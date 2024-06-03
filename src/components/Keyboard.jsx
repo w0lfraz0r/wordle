@@ -11,26 +11,15 @@ function Keyboard() {
 
     const handleKeyboard = useCallback((event) => {
         if (gameOver.gameOver) return;
-        if (event.key === "Enter") {
+
+        const key = event.key.toUpperCase();
+
+        if (key === "ENTER") {
             onEnter();
-        } else if (event.key === "Backspace") {
+        } else if (key === "BACKSPACE") {
             onDelete();
-        } else {
-            keys1.forEach((key) => {
-                if (event.key.toLowerCase() === key.toLowerCase()) {
-                    onSelectLetter(key);
-                }
-            });
-            keys2.forEach((key) => {
-                if (event.key.toLowerCase() === key.toLowerCase()) {
-                    onSelectLetter(key);
-                }
-            });
-            keys3.forEach((key) => {
-                if (event.key.toLowerCase() === key.toLowerCase()) {
-                    onSelectLetter(key);
-                }
-            });
+        } else if (keys1.includes(key) || keys2.includes(key) || keys3.includes(key)) {
+            onSelectLetter(key);
         }
     }, [currAttempt]);
     useEffect(() => {
