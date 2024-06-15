@@ -7,7 +7,7 @@ function Keyboard() {
     const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
-    const { disabledLetters, currAttempt, gameOver, onSelectLetter, onEnter, onDelete } = useContext(AppContext);
+    const { disabledLetters, gameOver, onSelectLetter, onEnter, onDelete } = useContext(AppContext);
 
     const handleKeyboard = useCallback((event) => {
         if (gameOver.gameOver) return;
@@ -18,10 +18,11 @@ function Keyboard() {
             onEnter();
         } else if (key === "BACKSPACE") {
             onDelete();
-        } else if (keys1.includes(key) || keys2.includes(key) || keys3.includes(key)) {
+        } else if (["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"].includes(key)) {
             onSelectLetter(key);
         }
-    }, [currAttempt]);
+    }, [gameOver.gameOver, onDelete, onEnter, onSelectLetter]);
+
     useEffect(() => {
         document.addEventListener("keydown", handleKeyboard);
 
