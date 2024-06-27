@@ -37,12 +37,10 @@ function App() {
     } else {
       alert("Word not found");
     }
-
-    if (currWord === correctWord) {
+    if (currWord.toLowerCase() === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
-    console.log(currAttempt);
     if (currAttempt.attempt === 5) {
       setGameOver({ gameOver: true, guessedWord: false });
       return;
